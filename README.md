@@ -1,1 +1,3 @@
 # pdbtool
+
+A PDB file (such as the one for the coronavirus protease) contains information obtained experimentally about a macromolecule, usually by either X‐ray crystallography, NMR spectroscopy, or cryo‐electron microscopy. The PDB file completely characterizes the molecule, providing the three-dimensional positions of every single atom in the file, where the bonds are, which amino acids it contains if it is a protein or which nucleotides if it is a poly-nucleotide such as DNA or RNA, and much more. The information is not necessarily exact; associated with some of this information are confidence values or other measures that indicate the degree to which the researchers believe that the information is accurate.
