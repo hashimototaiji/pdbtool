@@ -30,26 +30,26 @@ elif command == "help":
   if command_ == "quit":
     quit()
   elif command_ == "atomfreq":
-    command_ = command_
+    print("hello")
   elif command_ == "resfreq":
-    command_ = command_
+    print("hello")
   elif command_ == "reslength":
-    command_ = command_
+    print("hello")
   elif command_ == "tempcheck":
-    command_ = command_
+    print("hello")
   elif command_ == "occupancy":
-    command_ = command_
+    print("hello")
 #Outputs for 'atomfreq', 'resfreq', 'reslength', 'tempcheck', 'occupancy'
 elif command == "atomfreq":
-  command = command
+  print("hello")
 elif command == "resfreq":
-  command = command
+  print("hello")
 elif command == "reslength":
-  command = command
+  print("hello")
 elif command == "tempcheck":
-  command = command
+  print("hello")
 elif command == "occupancy":
-  command = command
+  print("hello")
 #Output if an invalid command is entered
 else:
 #Prompt if invalid command entered
@@ -65,12 +65,12 @@ else:
     if command_2 == "quit":
       quit()
     elif command_2 == "atomfreq":
-      command_2 = command_2
+      print("hello")
     elif command_2 == "resfreq":
-      command_2 = command_2
+      print("bye")
     elif command_2 == "reslength":
-      command_2 = command_2
+      print("hi")
     elif command_2 == "tempcheck":
-      command_2 = command_2
+      print("goodbye")
     elif command_2 == "occupancy":
-      command_2 = command_2
+      print("nice")
