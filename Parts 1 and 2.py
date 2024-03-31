@@ -24,7 +24,7 @@ if command == "quit":
 #Outputs for command 'help'
 elif command == "help":
 #List of valid commands
-  print("atomfreq\nresfreq\nreslength\ntempcheck\noccupancy\nquit")
+  print("help\natomfreq\nresfreq\nreslength\ntempcheck\noccupancy\nquit")
 #Enter input for second command
   command_=input("Enter a command: ")
 #Outputs of second command
@@ -60,7 +60,7 @@ else:
   command_1=input("Enter a command: ")
   if command_1 == "help":
 #List of valid commands (again)
-    print("atomfreq\nresfreq\nreslength\ntempcheck\noccupancy\nquit")
+    print("help\natomfreq\nresfreq\nreslength\ntempcheck\noccupancy\nquit")
 #Enter input for command AFTER invalid command given
     command_2=input("Enter a command: ")
 #Outputs of commands AFTER invalid command given
