@@ -19,6 +19,7 @@ print(count,"atoms recorded.\n\n")
 command=input("Enter a command: ")
 #'quit' command to quit program
 if command == "quit":
+  print("goodbye")
   quit()
 #Outputs for command 'help'
 elif command == "help":
@@ -28,6 +29,7 @@ elif command == "help":
   command_=input("Enter a command: ")
 #Outputs of second command
   if command_ == "quit":
+    print("goodbye")
     quit()
   elif command_ == "atomfreq":
     print("hello")
@@ -63,6 +65,7 @@ else:
     command_2=input("Enter a command: ")
 #Outputs of commands AFTER invalid command given
     if command_2 == "quit":
+      print("goodbye")
       quit()
     elif command_2 == "atomfreq":
       print("hello")
