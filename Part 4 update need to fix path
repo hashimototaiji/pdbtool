@@ -1,0 +1,30 @@
+import os
+
+def count_residues(filename):
+    residue_counts = {}
+    try:
+        with open(filename, "r") as file:
+            for line in file:
+                if line.startswith("ATOM"):
+                    residue_name = line[17:20].strip().upper()
+                    residue_counts[residue_name] = residue_counts.get(residue_name, 0) + 1
+    except FileNotFoundError:
+        print(f"Error: The file '{filename}' does not exist.")
+        return
+    
+    return residue_counts
+
+def print_residues_sorted(residue_counts):
+    for residue, count in sorted(residue_counts.items()):
+        print(f"{residue}: {count}")
+
+def main():
+    command = input("Enter command: ")
+    if command == 'resfreq':
+        filename = "/Users/imanmay/Downloads/6lu7.pdb"
+        residue_counts = count_residues(filename)
+        if residue_counts:
+            print_residues_sorted(residue_counts)
+
+if __name__ == "__main__":
+    main()
