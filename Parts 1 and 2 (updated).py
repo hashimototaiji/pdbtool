@@ -1,4 +1,4 @@
-#Prologue (for later)
+#Prologue (for later; will get done tomorrow)
 #File opened
 txt_file=open('pdbtool.pdb')
 #Counting number of appearances of word 'ATOM'
