@@ -1,7 +1,24 @@
-#Prologue (for later; will get done tomorrow)
-#File opened
+#Prologue (indented comments)
+  #Title: pdbtool
+  #Authors: Adnan Prantoi, Iman Meawad, Taiji Hashimoto, Jayden Leung
+  #Roles: J.L. (Parts 1 and 2), I.M. (Parts 3 and 4), T.H. (Parts 5 and 6), A.P. (parts 7 and 8)
+  #Date of Creation: 03/29/24
+  #Usage (command-usage): Commands 'help', 'atomfreq', 'resfreq', and 'quit' can be typed as they are
+    #reslength-reslength <res_name> <chain_id> <res_seq_number>
+    #tempcheck-tempcheck <decimal>
+    #occupancy-occupancy <decimal>
+  #Accepted Input (files): Only files containing the word 'ATOM' in the first index are accepted, since that's how the file is read when looking for specific information
+  #Command Descriptions (Input-Output): 
+    #help-lists all valid commands including itself
+    #atomfreq-displays number of atoms for each element (Ex: C: 3201)
+    #resfreq-displays the number of each residue in the file (Ex: ARG: 306)
+    #reslength-displays the length of a residue if chain id and sequence number is given
+    #tempcheck-displays the number of atoms that have a temperature factor at, above, or below a given value in terms of a fraction and percent
+    #occupancy-displays the frequency of atoms at, above, or below a given value (factor)
+    #quit-outputs a departing message (goodbye) then program ends
+#Open file
 txt_file=open('pdbtool.pdb')
-#Counting number of appearances of word 'ATOM'
+#Define count
 count = 0
 #Looping through each line in the text file
 for line in txt_file:
