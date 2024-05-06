@@ -1,0 +1,47 @@
+import sys
+
+def count_residues(filename):
+    residue_counts = {}
+    try:
+        with open(filename, "r") as file:
+            for line in file:
+                if line.startswith("ATOM"):
+                    residue_name = line[17:20].strip().upper()
+                    residue_counts[residue_name] = residue_counts.get(residue_name, 0) + 1
+    except FileNotFoundError:
+        print(f"Error: The file '{filename}' does not exist.")
+        return
+    
+    return residue_counts
+
+def print_residues_sorted(residue_counts):
+    if residue_counts:
+        for residue, count in sorted(residue_counts.items()):
+            print(f"{residue}: {count}")
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: residuefreq.py <pdb_file>")
+        sys.exit(1)
+
+    filename = sys.argv[1]
+    print("Welcome to the residue frequency program.")
+    print("Type 'resfreq' to display residue frequencies or 'help' for more commands.")
+
+    while True:
+        command = input("Enter command: ")
+        if command == 'resfreq':
+            residue_counts = count_residues(filename)
+            print_residues_sorted(residue_counts)
+        elif command == 'help':
+            print("Available commands:")
+            print("  resfreq - Display residue frequencies from the specified PDB file.")
+            print("  exit - Quit the program.")
+        elif command == 'exit':
+            print("Exiting program.")
+            break
+        else:
+            print("Invalid command. Type 'help' for assistance.")
+
+if __name__ == "__main__":
+    main()
