@@ -49,7 +49,18 @@ elif command == "help":
     print("goodbye")
     quit()
   elif command_ == "atomfreq":
-    print("hello")
+    def atomfreq_from_file(file_name):
+        atom_counts = {}
+        with open(file_name, 'r') as file:
+            for line in file:
+                if line.startswith("ATOM"):
+                 element = line[76:78].strip()
+                if element in atom_counts:
+                  atom_counts[element] += 1
+                else:
+                    atom_counts[element] = 1
+    for element, count in sorted(atom_counts.items(), key=lambda x: x[0]):
+        print(f"{element}: {count}")
   elif command_ == "resfreq":
     print("hello")
   elif command_ == "reslength":
@@ -327,7 +338,7 @@ def occupancy_frequency(atom_records, threshold):
     return below_count, at_count, above_count, total_count
 
 # Part 8: Quitting the program
-elif command.lower() == 'quit':
+if command.lower() == 'quit':
     print("Quitting the program. Goodbye!")
-    break
+    quit()
       
