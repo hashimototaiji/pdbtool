@@ -2,11 +2,26 @@ import sys
 
 # Function to read PDB file and count atom frequencies
 def atomfreq_from_file(file_name):
+    """
+    Read a Protein Data Bank (PDB) file and count the frequencies of each atom type.
+
+    This function reads the specified PDB file and counts the occurrences of each unique atom type.
+    The PDB file format typically contains records for each atom in a molecular structure. Each record
+    starts with the keyword 'ATOM' followed by information about the atom, including its element symbol.
+    This function extracts the element symbol from each 'ATOM' record and tallies the frequency of each
+    atom type.
+
+    Args:
+    file_name (str): The path to the PDB file.
+
+    Returns:
+    None: The function prints the atom frequencies to the console.
+    """
     atom_counts = {}
     with open(file_name, 'r') as file:
         for line in file:
             if line.startswith("ATOM"):
-                element = line[76:78].strip()
+                element = line[76:78].strip()  # Extract the atom symbol
                 if element in atom_counts:
                     atom_counts[element] += 1
                 else:
@@ -17,6 +32,16 @@ def atomfreq_from_file(file_name):
 
 # Main function to handle user input
 def main():
+    """
+    Main function to handle user input and execute commands.
+
+    This function serves as the entry point for the atom frequency program. It expects the user to
+    provide the path to a PDB file as a command-line argument when invoking the script. After
+    receiving the file path, it prompts the user for commands to interact with the program, such as
+    displaying atom frequencies or exiting the program.
+
+    Usage: python atomtool.py <pdb_file>
+    """
     if len(sys.argv) != 2:
         print("Usage: atomtool.py <pdb_file>")
         sys.exit(1)
