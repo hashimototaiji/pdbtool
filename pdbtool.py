@@ -1,3 +1,21 @@
+#Prologue (indented comments)
+  #Title: pdbtool
+  #Authors: Adnan Prantoi, Iman Meawad, Taiji Hashimoto, Jayden Leung
+  #Roles: J.L. (Parts 1 and 2), I.M. (Parts 3 and 4), T.H. (Parts 5 and 6), A.P. (parts 7 and 8)
+  #Date of Creation: 03/29/24
+  #Usage (command-usage): Commands 'help', 'atomfreq', 'resfreq', and 'quit' can be typed as they are
+    #reslength <res_name> <chain_id> <res_seq_number>
+    #tempcheck <decimal>
+    #occupancy <decimal>
+  #Accepted Input (files): Only files containing the word 'ATOM' in the first index are accepted, since that's how the file is read when looking for specific information
+  #Command Descriptions (Input-Output): 
+    #help all valid commands including itself
+    #atomfreq number of atoms for each element (Ex: C: 3201)
+    #resfreq the number of each residue in the file (Ex: ARG: 306)
+    #reslength the length of a residue if chain id and sequence number is given
+    #tempcheck the number of atoms that have a temperature factor at, above, or below a given value in terms of a fraction and percent
+    #occupancy the frequency of atoms at, above, or below a given value (factor)
+    #quit a departing message (goodbye) then program ends
 import sys
 import math
 
