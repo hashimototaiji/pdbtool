@@ -12,8 +12,8 @@
     #help-list all valid commands including itself
     #atomfreq-number of atoms for each element (Ex: C: 3201)
     #resfreq-displays the number of each residue in the file (Ex: ARG: 306)
-    #reslength-displaysthe length of a residue if chain id and sequence number is given
-    #tempcheck-displaysthe number of atoms that have a temperature factor at, above, or below a given value in terms of a fraction and percent
+    #reslength-displays the length of a residue if chain id and sequence number is given
+    #tempcheck-displays the number of atoms that have a temperature factor at, above, or below a given value in terms of a fraction and percent
     #occupancy-displays the frequency of atoms at, above, or below a given value (factor)
     #quit-outputs a departing message (goodbye) then program ends
 import sys

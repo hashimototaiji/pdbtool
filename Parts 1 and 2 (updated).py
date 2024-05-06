@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 #Prologue (indented comments)
   #Title: pdbtool
   #Authors: Adnan Prantoi, Iman Meawad, Taiji Hashimoto, Jayden Leung
