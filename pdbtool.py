@@ -20,7 +20,11 @@ import sys
 import math
 
 def read_pdb(file_path):
-    """ Reads a PDB file and returns a list of atoms with their properties. """
+    """
+    Reads a PDB file and returns a list of atoms with their detailed properties.
+    Each atom's properties include element type, residue name, chain ID, sequence number,
+    coordinates (x, y, z), temperature factor, and occupancy.
+    """
     atoms = []
     try:
         with open(file_path, 'r') as file:
@@ -45,7 +49,10 @@ def read_pdb(file_path):
         sys.exit(1)
 
 def atom_frequencies(atoms):
-    """ Displays the frequency of each atom type. """
+    """
+    Displays the frequency of each atom type sorted alphabetically.
+    This function helps in understanding the composition of the molecule.
+    """
     freq = {}
     for atom in atoms:
         element = atom['element']
@@ -54,7 +61,10 @@ def atom_frequencies(atoms):
         print(f"{element}: {freq[element]}")
 
 def residue_frequencies(atoms):
-    """ Displays the frequency of each residue type. """
+    """
+    Displays the frequency of each residue type sorted alphabetically.
+    Useful for understanding the composition of residues in the protein structure.
+    """
     freq = {}
     for atom in atoms:
         residue = atom['residue_name']
@@ -63,7 +73,10 @@ def residue_frequencies(atoms):
         print(f"{residue}: {freq[residue]}")
 
 def max_distance(atoms, res_name, chain_id, res_seq_num):
-    """ Calculates the maximum distance between atoms of a specified residue. """
+    """
+    Calculates and returns the maximum distance between any two atoms within a specified residue.
+    If the specified residue does not exist, returns None.
+    """
     relevant_atoms = [atom for atom in atoms if atom['residue_name'] == res_name and atom['chain_id'] == chain_id and atom['res_seq_num'] == res_seq_num]
     if not relevant_atoms:
         return None
@@ -76,7 +89,10 @@ def max_distance(atoms, res_name, chain_id, res_seq_num):
     return max_dist
 
 def temperature_check(atoms, threshold):
-    """ Displays temperature factor statistics. """
+    """
+    Displays statistics of temperature factors below, at, and above a given threshold.
+    Temperature factors indicate the degree of atomic motion due to thermal vibration.
+    """
     below = sum(1 for atom in atoms if atom['temp_factor'] < threshold)
     at = sum(1 for atom in atoms if atom['temp_factor'] == threshold)
     above = sum(1 for atom in atoms if atom['temp_factor'] > threshold)
@@ -86,7 +102,10 @@ def temperature_check(atoms, threshold):
     print(f"Temperature factor above {threshold:.2f}: {above} / {total} ({above / total * 100:.1f}%)")
 
 def occupancy_frequency(atoms, threshold):
-    """ Displays occupancy statistics. """
+    """
+    Displays statistics of atom occupancy below, at, and above a given threshold.
+    Occupancy values indicate the proportion of time an atom is present in a particular position in the structure.
+    """
     below = sum(1 for atom in atoms if atom['occupancy'] < threshold)
     at = sum(1 for atom in atoms if atom['occupancy'] == threshold)
     above = sum(1 for atom in atoms if atom['occupancy'] > threshold)
@@ -96,6 +115,10 @@ def occupancy_frequency(atoms, threshold):
     print(f"Occupancy above {threshold:.2f}: {above} / {total} ({above / total * 100:.1f}%)")
 
 def main():
+    """
+    Main function that initializes the program, loads the PDB file, and handles user commands in a loop.
+    Commands include atom and residue frequency analysis, residue length measurement, temperature and occupancy checks, and exiting the program.
+    """
     if len(sys.argv) != 2:
         print("Usage: python pdbtool.py <pdb_file>")
         sys.exit(1)
