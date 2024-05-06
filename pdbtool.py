@@ -9,13 +9,13 @@
     #occupancy <decimal>
   #Accepted Input (files): Only files containing the word 'ATOM' in the first index are accepted, since that's how the file is read when looking for specific information
   #Command Descriptions (Input-Output): 
-    #help all valid commands including itself
-    #atomfreq number of atoms for each element (Ex: C: 3201)
-    #resfreq the number of each residue in the file (Ex: ARG: 306)
-    #reslength the length of a residue if chain id and sequence number is given
-    #tempcheck the number of atoms that have a temperature factor at, above, or below a given value in terms of a fraction and percent
-    #occupancy the frequency of atoms at, above, or below a given value (factor)
-    #quit a departing message (goodbye) then program ends
+    #help-list all valid commands including itself
+    #atomfreq-number of atoms for each element (Ex: C: 3201)
+    #resfreq-displays the number of each residue in the file (Ex: ARG: 306)
+    #reslength-displaysthe length of a residue if chain id and sequence number is given
+    #tempcheck-displaysthe number of atoms that have a temperature factor at, above, or below a given value in terms of a fraction and percent
+    #occupancy-displays the frequency of atoms at, above, or below a given value (factor)
+    #quit-outputs a departing message (goodbye) then program ends
 import sys
 import math
 
