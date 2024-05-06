@@ -1,0 +1,333 @@
+#Prologue (indented comments)
+  #Title: pdbtool
+  #Authors: Adnan Prantoi, Iman Meawad, Taiji Hashimoto, Jayden Leung
+  #Roles: J.L. (Parts 1 and 2), I.M. (Parts 3 and 4), T.H. (Parts 5 and 6), A.P. (parts 7 and 8)
+  #Date of Creation: 03/29/24
+  #Usage (command-usage): Commands 'help', 'atomfreq', 'resfreq', and 'quit' can be typed as they are
+    #reslength-reslength <res_name> <chain_id> <res_seq_number>
+    #tempcheck-tempcheck <decimal>
+    #occupancy-occupancy <decimal>
+  #Accepted Input (files): Only files containing the word 'ATOM' in the first index are accepted, since that's how the file is read when looking for specific information
+  #Command Descriptions (Input-Output): 
+    #help-lists all valid commands including itself
+    #atomfreq-displays number of atoms for each element (Ex: C: 3201)
+    #resfreq-displays the number of each residue in the file (Ex: ARG: 306)
+    #reslength-displays the length of a residue if chain id and sequence number is given
+    #tempcheck-displays the number of atoms that have a temperature factor at, above, or below a given value in terms of a fraction and percent
+    #occupancy-displays the frequency of atoms at, above, or below a given value (factor)
+    #quit-outputs a departing message (goodbye) then program ends
+#Open file
+txt_file=open('pdbtool.pdb')
+#Define count
+count = 0
+#Looping through each line in the text file
+for line in txt_file:
+  #Variable 'line' set as list of words
+  line=line.split()
+  #Seeing if first word is 'ATOM'
+  if line[0] == 'ATOM':
+    #Increase count by 1 if first word is 'ATOM'
+    count+=1
+#Print(text)
+print("Welcome to the pdb program.\n")
+print("To begin, try typing 'help' for the list of valid commands.\n")
+print(count,"atoms recorded.\n\n")
+#User Input
+command=input("Enter a command: ")
+#'quit' command to quit program
+if command == "quit":
+  print("goodbye")
+  quit()
+#Outputs for command 'help'
+elif command == "help":
+#List of valid commands
+  print("help\natomfreq\nresfreq\nreslength\ntempcheck\noccupancy\nquit")
+#Enter input for second command
+  command_=input("Enter a command: ")
+#Outputs of second command
+  if command_ == "quit":
+    print("goodbye")
+    quit()
+  elif command_ == "atomfreq":
+    print("hello")
+  elif command_ == "resfreq":
+    print("hello")
+  elif command_ == "reslength":
+    print("hello")
+  elif command_ == "tempcheck":
+    print("hello")
+  elif command_ == "occupancy":
+    print("hello")
+#Outputs for 'atomfreq', 'resfreq', 'reslength', 'tempcheck', 'occupancy'
+elif command == "atomfreq":
+  print("hello")
+elif command == "resfreq":
+  print("hello")
+elif command == "reslength":
+  print("hello")
+elif command == "tempcheck":
+  print("hello")
+elif command == "occupancy":
+  print("hello")
+#Output if an invalid command is entered
+else:
+#Prompt if invalid command entered
+  print("Invalid command. Type 'help' for the list of valid commands")
+#Help command entered AFTER invalid command given
+  command_1=input("Enter a command: ")
+  if command_1 == "help":
+#List of valid commands (again)
+    print("help\natomfreq\nresfreq\nreslength\ntempcheck\noccupancy\nquit")
+#Enter input for command AFTER invalid command given
+    command_2=input("Enter a command: ")
+#Outputs of commands AFTER invalid command given
+    if command_2 == "quit":
+      print("goodbye")
+      quit()
+    elif command_2 == "atomfreq":
+      print("hello")
+    elif command_2 == "resfreq":
+      print("bye")
+    elif command_2 == "reslength":
+      print("hi")
+    elif command_2 == "tempcheck":
+      print("goodbye")
+    elif command_2 == "occupancy":
+      print("nice")
+      import sys
+
+# Function to read PDB file and count atom frequencies
+def atomfreq_from_file(file_name):
+    atom_counts = {}
+    with open(file_name, 'r') as file:
+        for line in file:
+            if line.startswith("ATOM"):
+                element = line[76:78].strip()
+                if element in atom_counts:
+                    atom_counts[element] += 1
+                else:
+                    atom_counts[element] = 1
+
+    for element, count in sorted(atom_counts.items(), key=lambda x: x[0]):
+        print(f"{element}: {count}")
+
+# Main function to handle user input
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: atomtool.py <pdb_file>")
+        sys.exit(1)
+    
+    pdb_file = sys.argv[1]
+    print("Welcome to the atom frequency program.")
+    print("To display atom frequencies, type 'atomfreq' or type 'help' for the list of commands.")
+    
+    while True:
+        command = input("Enter a command: ")
+        if command == 'atomfreq':
+            atomfreq_from_file(pdb_file)
+        elif command == 'help':
+            print("Available commands:")
+            print("  atomfreq - Display atom frequencies from the PDB file.")
+            print("  exit - Quit the program.")
+        elif command == 'exit':
+            print("Exiting program.")
+            break
+        else:
+            print("Invalid command. Type 'help' for assistance.")
+
+if __name__ == "__main__":
+    main()
+    import sys
+
+def count_residues(filename):
+    residue_counts = {}
+    try:
+        with open(filename, "r") as file:
+            for line in file:
+                if line.startswith("ATOM"):
+                    residue_name = line[17:20].strip().upper()
+                    residue_counts[residue_name] = residue_counts.get(residue_name, 0) + 1
+    except FileNotFoundError:
+        print(f"Error: The file '{filename}' does not exist.")
+        return
+    
+    return residue_counts
+
+def print_residues_sorted(residue_counts):
+    if residue_counts:
+        for residue, count in sorted(residue_counts.items()):
+            print(f"{residue}: {count}")
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: residuefreq.py <pdb_file>")
+        sys.exit(1)
+
+    filename = sys.argv[1]
+    print("Welcome to the residue frequency program.")
+    print("Type 'resfreq' to display residue frequencies or 'help' for more commands.")
+
+    while True:
+        command = input("Enter command: ")
+        if command == 'resfreq':
+            residue_counts = count_residues(filename)
+            print_residues_sorted(residue_counts)
+        elif command == 'help':
+            print("Available commands:")
+            print("  resfreq - Display residue frequencies from the specified PDB file.")
+            print("  exit - Quit the program.")
+        elif command == 'exit':
+            print("Exiting program.")
+            break
+        else:
+            print("Invalid command. Type 'help' for assistance.")
+
+if __name__ == "__main__":
+    main()
+    import sys
+import math
+
+# Function to calculate Euclidean distance between two 3D points
+def calculate_distance(atom1, atom2):
+    x1, y1, z1 = atom1
+    x2, y2, z2 = atom2
+    return math.sqrt((x2 - x1)**2 + (y2 - y1)**2 + (z2 - z1)**2)
+
+# Function to read PDB file and extract atom coordinates
+def read_pdb_file(file_name):
+    atom_coordinates = {}
+    with open(file_name, 'r') as pdb_file:
+        for line in pdb_file:
+            if line.startswith('ATOM'):
+                atom_name = line[12:16].strip()
+                x = float(line[30:38])
+                y = float(line[38:46])
+                z = float(line[46:54])
+                chain_id = line[21]
+                residue_seq_num = int(line[22:26])
+                if (atom_name, chain_id, residue_seq_num) not in atom_coordinates:
+                    atom_coordinates[(atom_name, chain_id, residue_seq_num)] = []
+                atom_coordinates[(atom_name, chain_id, residue_seq_num)].append((x, y, z))
+    return atom_coordinates
+
+# Function to calculate maximum distance within a residue
+def calculate_residue_length(pdb_file, res_name, chain_id, res_seq_num):
+    atom_coordinates = read_pdb_file(pdb_file)
+    if (res_name, chain_id, res_seq_num) not in atom_coordinates:
+        print("No residue present.")
+        return
+    atoms = atom_coordinates[(res_name, chain_id, res_seq_num)]
+    max_distance = 0
+    for i in range(len(atoms)):
+        for j in range(i+1, len(atoms)):
+            distance = calculate_distance(atoms[i], atoms[j])
+            if distance > max_distance:
+                max_distance = distance
+    print(f"{res_name} with sequence number {res_seq_num} in chain {chain_id} has length {max_distance:.2f} angstroms.")
+
+# Main function to handle user input
+def main():
+    if len(sys.argv) != 4:
+        print("Usage: pdbtool.py <pdb_file>")
+        sys.exit(1)
+    
+    pdb_file = sys.argv[1]
+    print("Welcome to the pdb program.")
+    print("To begin, try typing 'help' for the list of valid commands.")
+    
+    while True:
+        command = input("Enter a command: ").split()
+        if not command:
+            continue
+        if command[0] == 'reslength':
+            if len(command) != 4:
+                print("Usage: reslength <res_name> <chain_id> <res_seq_num>")
+                print("For details about the reslength command, use the 'help' command.")
+                continue
+            res_name = command[1].upper()
+            chain_id = command[2].upper()
+            try:
+                res_seq_num = int(command[3])
+            except ValueError:
+                print("Usage: reslength <res_name> <chain_id> <res_seq_num>")
+                print("For details about the reslength command, use the 'help' command.")
+                continue
+            calculate_residue_length(pdb_file, res_name, chain_id, res_seq_num)
+        elif command[0] == 'help':
+            print("This program calculates the maximum distance between atoms within a specified residue.")
+            print("Usage: reslength <res_name> <chain_id> <res_seq_num>")
+        else:
+            print("Invalid command. Type 'help' for assistance.")
+
+if __name__ == "__main__":
+    main()
+    import sys
+
+def read_pdb_file(filename):
+    # This function reads the PDB file and extracts temperature factors.
+    atoms = []
+    try:
+        with open(filename, 'r') as file:
+            for line in file:
+                if line.startswith("ATOM") or line.startswith("HETATM"):
+                    temp_factor = float(line[60:66].strip())  # Assuming temp factor is in this column
+                    atoms.append(temp_factor)
+    except FileNotFoundError:
+        print(f"Error: File {filename} not found.")
+        sys.exit(1)
+    return atoms
+
+def tempcheck(temp_factors, threshold):
+    below = len([t for t in temp_factors if t < threshold])
+    at = len([t for t in temp_factors if t == threshold])
+    above = len([t for t in temp_factors if t > threshold])
+    total = len(temp_factors)
+    print(f"Temperature factor below {threshold:.2f}: {below} / {total} ({below/total*100:.1f}%)")
+    print(f"Temperature factor at {threshold:.2f}: {at} / {total} ({at/total*100:.1f}%)")
+    print(f"Temperature factor above {threshold:.2f}: {above} / {total} ({above/total*100:.1f}%)")
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: pdbtool.py <pdb_file>")
+        sys.exit(1)
+
+    filename = sys.argv[1]
+    atoms = read_pdb_file(filename)
+    print(f"Welcome to the pdb program.\nTo begin, try typing 'help' for the list of valid commands.\n{len(atoms)} atoms recorded.")
+
+    while True:
+        try:
+            command = input("Enter a command: ").strip().split()
+            if command[0] == 'tempcheck':
+                if len(command) == 2:
+                    try:
+                        decimal = float(command[1])
+                        if 0.00 <= decimal <= 100.00:
+                            tempcheck(atoms, decimal)
+                        else:
+                            raise ValueError
+                    except ValueError:
+                        print("Usage: tempcheck <decimal>\nFor details about the tempcheck command, use the 'help' command.")
+                else:
+                    print("Incorrect number of arguments to tempcheck" if len(command) > 2 else "Missing argument to tempcheck")
+            else:
+                print(f"Unknown command: {command[0]}")
+        except KeyboardInterrupt:
+            print("\nExiting the program.")
+            break
+
+if __name__ == "__main__":
+    main()
+    # Part 7: Calculating frequency based on occupancy
+def occupancy_frequency(atom_records, threshold):
+    below_count = sum(1 for atom in atom_records if atom['occupancy'] < threshold)
+    at_count = sum(1 for atom in atom_records if atom['occupancy'] == threshold)
+    above_count = sum(1 for atom in atom_records if atom['occupancy'] > threshold)
+    total_count = len(atom_records)
+    return below_count, at_count, above_count, total_count
+
+# Part 8: Quitting the program
+elif command.lower() == 'quit':
+    print("Quitting the program. Goodbye!")
+    break
+      
