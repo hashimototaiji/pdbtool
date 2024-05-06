@@ -1,0 +1,43 @@
+import sys
+
+# Function to read PDB file and count atom frequencies
+def atomfreq_from_file(file_name):
+    atom_counts = {}
+    with open(file_name, 'r') as file:
+        for line in file:
+            if line.startswith("ATOM"):
+                element = line[76:78].strip()
+                if element in atom_counts:
+                    atom_counts[element] += 1
+                else:
+                    atom_counts[element] = 1
+
+    for element, count in sorted(atom_counts.items(), key=lambda x: x[0]):
+        print(f"{element}: {count}")
+
+# Main function to handle user input
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: atomtool.py <pdb_file>")
+        sys.exit(1)
+    
+    pdb_file = sys.argv[1]
+    print("Welcome to the atom frequency program.")
+    print("To display atom frequencies, type 'atomfreq' or type 'help' for the list of commands.")
+    
+    while True:
+        command = input("Enter a command: ")
+        if command == 'atomfreq':
+            atomfreq_from_file(pdb_file)
+        elif command == 'help':
+            print("Available commands:")
+            print("  atomfreq - Display atom frequencies from the PDB file.")
+            print("  exit - Quit the program.")
+        elif command == 'exit':
+            print("Exiting program.")
+            break
+        else:
+            print("Invalid command. Type 'help' for assistance.")
+
+if __name__ == "__main__":
+    main()
